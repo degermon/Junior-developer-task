@@ -1,0 +1,6 @@
+framework module Pods_Junior_developer_task {
+  umbrella header "Pods-Junior developer task-umbrella.h"
+
+  export *
+  module * { export * }
+}

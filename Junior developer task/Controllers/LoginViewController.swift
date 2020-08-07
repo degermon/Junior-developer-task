@@ -17,18 +17,34 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setConstraints()
-        setTextFieldsPlaceholderText()
+        configureTextFields()
+        configureTapGestureRecognizer()
     }
     
     // MARK: - Config
     
-    func setTextFieldsPlaceholderText() {
+    func configureTextFields() {
         usernameTextField.placeholder = "Username:"
         passwordTextField.placeholder = "Password:"
+        
+        usernameTextField.delegate = self
+        passwordTextField.delegate = self
+        
+        passwordTextField.isSecureTextEntry = true
+    }
+    
+    private func configureTapGestureRecognizer() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(LoginViewController.handleTap))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc private func handleTap() {
+        view.endEditing(true)
     }
     
     // MARK: - Actions
     
     @IBAction func loginButtonTapped(_ sender: Any) {
+        handleTap()
     }
 }
