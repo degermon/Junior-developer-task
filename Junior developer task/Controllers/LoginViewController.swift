@@ -60,10 +60,19 @@ class LoginViewController: UIViewController {
             switch result {
             case .failure(let error):
                 print(error)
+                DispatchQueue.main.async {
+                    self.displayLoginAlert()
+                }
             case .success(let token):
                 self.navigateToServerListVC(withToken: token)
             }
         }
+    }
+    
+    private func displayLoginAlert() {
+        let alert = UIAlertController(title: "Error", message: "Please check your login info", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        self.present(alert, animated: true)
     }
     
     // MARK: - Navigation
