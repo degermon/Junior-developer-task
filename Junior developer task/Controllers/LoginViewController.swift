@@ -42,9 +42,26 @@ class LoginViewController: UIViewController {
         view.endEditing(true)
     }
     
+    private func logIn() {
+        let tesoDataRequest = TesoRequest()
+        
+        let username = SafeUnwrap.shared.safeUnwrapOfString(string: usernameTextField.text)
+        let password = SafeUnwrap.shared.safeUnwrapOfString(string: passwordTextField.text)
+        
+        tesoDataRequest.getToken(username: username, password: password) { result in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let token):
+                print(token)
+            }
+        }
+    }
+    
     // MARK: - Actions
     
     @IBAction func loginButtonTapped(_ sender: Any) {
         handleTap()
+        logIn()
     }
 }
