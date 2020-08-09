@@ -27,7 +27,7 @@ class TesoRequest {
         
         request.httpBody = jsonData
 
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+        let task = URLSession.shared.dataTask(with: request) { data, _, error in
             guard let data = data, error == nil else {
                 completion(.failure(.noTokenDataAvailable))
                 return
@@ -39,6 +39,30 @@ class TesoRequest {
                     return
                 }
                 completion(.success(token))
+            }
+        }
+        task.resume()
+    }
+    
+    func getServersList(withToken: String, completion: @escaping (Result<[ServerList], RequestError>) -> ()) {
+        
+        guard let url = URL(string: "https://playground.tesonet.lt/v1/servers") else {return}
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.addValue("Bearer \(withToken)", forHTTPHeaderField: "Authorization")
+
+        let task = URLSession.shared.dataTask(with: request) { (data, _ , error) in
+            guard let data = data else {
+                completion(.failure(.noTokenDataAvailable))
+                return
+            }
+            
+            do {
+                let decoder = JSONDecoder()
+                let list = try decoder.decode([ServerList].self, from: data)
+                completion(.success(list))
+            } catch {
+                completion(.failure(.cannotProcessData))
             }
         }
         task.resume()

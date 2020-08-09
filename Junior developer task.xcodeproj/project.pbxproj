@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		656AA28424E00196007DA9E9 /* SafeUnwrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656AA28324E00196007DA9E9 /* SafeUnwrap.swift */; };
+		656AA28624E00C67007DA9E9 /* ServerListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656AA28524E00C67007DA9E9 /* ServerListViewController.swift */; };
+		656AA28824E00C82007DA9E9 /* ServerListViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656AA28724E00C81007DA9E9 /* ServerListViewControllerExt.swift */; };
 		65758C2224DFFE6900DA4F2B /* TesoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65758C2124DFFE6900DA4F2B /* TesoRequest.swift */; };
 		65758C2524DFFFAF00DA4F2B /* ServerList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65758C2424DFFFAF00DA4F2B /* ServerList.swift */; };
 		65F9561E24DDAFD800936E9B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F9561D24DDAFD800936E9B /* AppDelegate.swift */; };
@@ -23,6 +25,8 @@
 /* Begin PBXFileReference section */
 		4B6715C41DB2A1351B4E534D /* Pods-Junior developer task.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Junior developer task.debug.xcconfig"; path = "Target Support Files/Pods-Junior developer task/Pods-Junior developer task.debug.xcconfig"; sourceTree = "<group>"; };
 		656AA28324E00196007DA9E9 /* SafeUnwrap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeUnwrap.swift; sourceTree = "<group>"; };
+		656AA28524E00C67007DA9E9 /* ServerListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerListViewController.swift; sourceTree = "<group>"; };
+		656AA28724E00C81007DA9E9 /* ServerListViewControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerListViewControllerExt.swift; sourceTree = "<group>"; };
 		65758C2124DFFE6900DA4F2B /* TesoRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TesoRequest.swift; sourceTree = "<group>"; };
 		65758C2424DFFFAF00DA4F2B /* ServerList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerList.swift; sourceTree = "<group>"; };
 		65F9561A24DDAFD800936E9B /* Junior developer task.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Junior developer task.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -105,12 +109,12 @@
 			isa = PBXGroup;
 			children = (
 				656AA28224E00184007DA9E9 /* Classes */,
-				65758C2324DFFF9B00DA4F2B /* Struct */,
-				65758C2024DFFE1E00DA4F2B /* DataRequest */,
-				65F9563424DDB3A300936E9B /* Storyboards */,
 				65F9563124DDB34A00936E9B /* Controllers */,
-				65F9563224DDB35200936E9B /* Other */,
+				65758C2024DFFE1E00DA4F2B /* DataRequest */,
 				65F9562B24DDAFD900936E9B /* Info.plist */,
+				65F9563224DDB35200936E9B /* Other */,
+				65F9563424DDB3A300936E9B /* Storyboards */,
+				65758C2324DFFF9B00DA4F2B /* Struct */,
 			);
 			path = "Junior developer task";
 			sourceTree = "<group>";
@@ -120,6 +124,8 @@
 			children = (
 				65F9562124DDAFD800936E9B /* LoginViewController.swift */,
 				65F9563524DDB4D600936E9B /* LoginViewControllerExt.swift */,
+				656AA28524E00C67007DA9E9 /* ServerListViewController.swift */,
+				656AA28724E00C81007DA9E9 /* ServerListViewControllerExt.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -266,9 +272,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				656AA28824E00C82007DA9E9 /* ServerListViewControllerExt.swift in Sources */,
 				656AA28424E00196007DA9E9 /* SafeUnwrap.swift in Sources */,
 				65F9563624DDB4D600936E9B /* LoginViewControllerExt.swift in Sources */,
 				65F9562224DDAFD800936E9B /* LoginViewController.swift in Sources */,
+				656AA28624E00C67007DA9E9 /* ServerListViewController.swift in Sources */,
 				65758C2524DFFFAF00DA4F2B /* ServerList.swift in Sources */,
 				65758C2224DFFE6900DA4F2B /* TesoRequest.swift in Sources */,
 				65F9561E24DDAFD800936E9B /* AppDelegate.swift in Sources */,

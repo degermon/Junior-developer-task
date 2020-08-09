@@ -19,11 +19,16 @@ class LoginViewController: UIViewController {
         setConstraints()
         configureTextFields()
         configureTapGestureRecognizer()
+        setTitle()
     }
     
     // MARK: - Config
     
-    func configureTextFields() {
+    private func setTitle() {
+        self.title = "Login"
+    }
+    
+    private func configureTextFields() {
         usernameTextField.placeholder = "Username:"
         passwordTextField.placeholder = "Password:"
         
@@ -53,7 +58,16 @@ class LoginViewController: UIViewController {
             case .failure(let error):
                 print(error)
             case .success(let token):
-                print(token)
+                self.navigateToServerListVC(withToken: token)
+            }
+        }
+    }
+    
+    private func navigateToServerListVC(withToken: String) {
+        DispatchQueue.main.async {
+            if let destinationVC = self.storyboard?.instantiateViewController(withIdentifier: "ShowServerList") as? ServerListViewController {
+                destinationVC.token = withToken
+                self.navigationController?.pushViewController(destinationVC, animated: true)
             }
         }
     }
