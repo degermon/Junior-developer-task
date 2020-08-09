@@ -32,6 +32,9 @@ class LoginViewController: UIViewController {
         usernameTextField.placeholder = "Username:"
         passwordTextField.placeholder = "Password:"
         
+        usernameTextField.clearButtonMode = .whileEditing
+        passwordTextField.clearButtonMode = .whileEditing
+        
         usernameTextField.delegate = self
         passwordTextField.delegate = self
         
@@ -62,6 +65,8 @@ class LoginViewController: UIViewController {
             }
         }
     }
+    
+    // MARK: - Navigation
     
     private func navigateToServerListVC(withToken: String) {
         DispatchQueue.main.async {

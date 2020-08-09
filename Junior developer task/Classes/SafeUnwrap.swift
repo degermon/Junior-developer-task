@@ -18,7 +18,7 @@ class SafeUnwrap {
         return safelyUnwrapped
     }
     
-    func safeUnwrapOfInt(number: Int?) -> String { 
+    func safeUnwrapOfInt(number: Int?) -> String { // and transform to String
         guard let safelyUnwrapped = number else {
             return ""
         }

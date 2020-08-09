@@ -27,8 +27,8 @@ class TesoRequest {
         
         request.httpBody = jsonData
 
-        let task = URLSession.shared.dataTask(with: request) { data, _, error in
-            guard let data = data, error == nil else {
+        let task = URLSession.shared.dataTask(with: request) { data, _, _ in
+            guard let data = data else {
                 completion(.failure(.noTokenDataAvailable))
                 return
             }
@@ -51,9 +51,9 @@ class TesoRequest {
         request.httpMethod = "GET"
         request.addValue("Bearer \(withToken)", forHTTPHeaderField: "Authorization")
 
-        let task = URLSession.shared.dataTask(with: request) { (data, _ , error) in
+        let task = URLSession.shared.dataTask(with: request) { (data, _ , _) in
             guard let data = data else {
-                completion(.failure(.noTokenDataAvailable))
+                completion(.failure(.noServerDataAvailable))
                 return
             }
             

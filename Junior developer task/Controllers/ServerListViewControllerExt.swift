@@ -26,8 +26,12 @@ extension ServerListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ServerCell", for: indexPath)
-        cell.textLabel?.text = SafeUnwrap.shared.safeUnwrapOfString(string: serverList[indexPath.row].name)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ServerCell", for: indexPath) as? ServerTableViewCell else {
+            return UITableViewCell()
+        }
+        
+        cell.setNameLabel(text: SafeUnwrap.shared.safeUnwrapOfString(string: serverList[indexPath.row].name))
+        cell.setDistanceLabel(text: "Distance: \(SafeUnwrap.shared.safeUnwrapOfInt(number: serverList[indexPath.row].distance))")
                
         return cell
     }

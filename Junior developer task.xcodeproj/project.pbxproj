@@ -10,6 +10,8 @@
 		656AA28424E00196007DA9E9 /* SafeUnwrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656AA28324E00196007DA9E9 /* SafeUnwrap.swift */; };
 		656AA28624E00C67007DA9E9 /* ServerListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656AA28524E00C67007DA9E9 /* ServerListViewController.swift */; };
 		656AA28824E00C82007DA9E9 /* ServerListViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656AA28724E00C81007DA9E9 /* ServerListViewControllerExt.swift */; };
+		656AA28A24E034CC007DA9E9 /* ServerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656AA28924E034CC007DA9E9 /* ServerTableViewCell.swift */; };
+		656AA28C24E039EA007DA9E9 /* RoundedButtonClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656AA28B24E039EA007DA9E9 /* RoundedButtonClass.swift */; };
 		65758C2224DFFE6900DA4F2B /* TesoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65758C2124DFFE6900DA4F2B /* TesoRequest.swift */; };
 		65758C2524DFFFAF00DA4F2B /* ServerList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65758C2424DFFFAF00DA4F2B /* ServerList.swift */; };
 		65F9561E24DDAFD800936E9B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F9561D24DDAFD800936E9B /* AppDelegate.swift */; };
@@ -27,6 +29,8 @@
 		656AA28324E00196007DA9E9 /* SafeUnwrap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeUnwrap.swift; sourceTree = "<group>"; };
 		656AA28524E00C67007DA9E9 /* ServerListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerListViewController.swift; sourceTree = "<group>"; };
 		656AA28724E00C81007DA9E9 /* ServerListViewControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerListViewControllerExt.swift; sourceTree = "<group>"; };
+		656AA28924E034CC007DA9E9 /* ServerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerTableViewCell.swift; sourceTree = "<group>"; };
+		656AA28B24E039EA007DA9E9 /* RoundedButtonClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButtonClass.swift; sourceTree = "<group>"; };
 		65758C2124DFFE6900DA4F2B /* TesoRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TesoRequest.swift; sourceTree = "<group>"; };
 		65758C2424DFFFAF00DA4F2B /* ServerList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerList.swift; sourceTree = "<group>"; };
 		65F9561A24DDAFD800936E9B /* Junior developer task.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Junior developer task.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -66,7 +70,9 @@
 		656AA28224E00184007DA9E9 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				656AA28B24E039EA007DA9E9 /* RoundedButtonClass.swift */,
 				656AA28324E00196007DA9E9 /* SafeUnwrap.swift */,
+				656AA28924E034CC007DA9E9 /* ServerTableViewCell.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -272,10 +278,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				656AA28A24E034CC007DA9E9 /* ServerTableViewCell.swift in Sources */,
 				656AA28824E00C82007DA9E9 /* ServerListViewControllerExt.swift in Sources */,
 				656AA28424E00196007DA9E9 /* SafeUnwrap.swift in Sources */,
 				65F9563624DDB4D600936E9B /* LoginViewControllerExt.swift in Sources */,
 				65F9562224DDAFD800936E9B /* LoginViewController.swift in Sources */,
+				656AA28C24E039EA007DA9E9 /* RoundedButtonClass.swift in Sources */,
 				656AA28624E00C67007DA9E9 /* ServerListViewController.swift in Sources */,
 				65758C2524DFFFAF00DA4F2B /* ServerList.swift in Sources */,
 				65758C2224DFFE6900DA4F2B /* TesoRequest.swift in Sources */,
