@@ -70,11 +70,30 @@
 		656AA28224E00184007DA9E9 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				656AA28B24E039EA007DA9E9 /* RoundedButtonClass.swift */,
 				656AA28324E00196007DA9E9 /* SafeUnwrap.swift */,
-				656AA28924E034CC007DA9E9 /* ServerTableViewCell.swift */,
 			);
 			path = Classes;
+			sourceTree = "<group>";
+		};
+		656AA28D24E04682007DA9E9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				656AA28224E00184007DA9E9 /* Classes */,
+				65758C2024DFFE1E00DA4F2B /* DataRequest */,
+				65758C2324DFFF9B00DA4F2B /* Struct */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		656AA28E24E046DF007DA9E9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				65F9562824DDAFD900936E9B /* LaunchScreen.storyboard */,
+				65F9562324DDAFD800936E9B /* Main.storyboard */,
+				656AA28B24E039EA007DA9E9 /* RoundedButtonClass.swift */,
+				656AA28924E034CC007DA9E9 /* ServerTableViewCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		65758C2024DFFE1E00DA4F2B /* DataRequest */ = {
@@ -114,13 +133,11 @@
 		65F9561C24DDAFD800936E9B /* Junior developer task */ = {
 			isa = PBXGroup;
 			children = (
-				656AA28224E00184007DA9E9 /* Classes */,
 				65F9563124DDB34A00936E9B /* Controllers */,
-				65758C2024DFFE1E00DA4F2B /* DataRequest */,
 				65F9562B24DDAFD900936E9B /* Info.plist */,
+				656AA28D24E04682007DA9E9 /* Model */,
 				65F9563224DDB35200936E9B /* Other */,
-				65F9563424DDB3A300936E9B /* Storyboards */,
-				65758C2324DFFF9B00DA4F2B /* Struct */,
+				656AA28E24E046DF007DA9E9 /* View */,
 			);
 			path = "Junior developer task";
 			sourceTree = "<group>";
@@ -144,15 +161,6 @@
 				65F9561F24DDAFD800936E9B /* SceneDelegate.swift */,
 			);
 			path = Other;
-			sourceTree = "<group>";
-		};
-		65F9563424DDB3A300936E9B /* Storyboards */ = {
-			isa = PBXGroup;
-			children = (
-				65F9562824DDAFD900936E9B /* LaunchScreen.storyboard */,
-				65F9562324DDAFD800936E9B /* Main.storyboard */,
-			);
-			path = Storyboards;
 			sourceTree = "<group>";
 		};
 		D2EE23B3FEBED463802C3E90 /* Frameworks */ = {
