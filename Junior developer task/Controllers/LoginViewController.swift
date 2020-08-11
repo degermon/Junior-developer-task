@@ -51,12 +51,12 @@ class LoginViewController: UIViewController {
     }
     
     private func logIn() {
-        let tesoDataRequest = TesoRequest()
+        let request = NetworkRequest()
         
         let username = SafeUnwrap.shared.safeUnwrapOfString(string: usernameTextField.text)
         let password = SafeUnwrap.shared.safeUnwrapOfString(string: passwordTextField.text)
         
-        tesoDataRequest.getToken(username: username, password: password) { result in
+        request.getToken(url: UrlKeeper.tokenUrl, username: username, password: password) { result in
             switch result {
             case .failure(let error):
                 print(error)
@@ -69,8 +69,10 @@ class LoginViewController: UIViewController {
         }
     }
     
+    // MARK: - Alerts
+    
     private func displayLoginAlert() {
-        let alert = UIAlertController(title: "Error", message: "Please check your login info", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Error", message: "Please check your login info and try again", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         self.present(alert, animated: true)
     }

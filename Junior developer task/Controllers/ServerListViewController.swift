@@ -14,7 +14,7 @@ class ServerListViewController: UIViewController {
     var token: String = ""
     var serverList: [ServerList] = [] {
         didSet {
-            serverList = serverList.sorted { SafeUnwrap.shared.safeUnwrapOfString(string: $0.name?.lowercased()) < SafeUnwrap.shared.safeUnwrapOfString(string: $1.name?.lowercased()) }
+            serverList = serverList.sorted { SafeUnwrap.shared.safeUnwrapOfString(string: $0.name?.lowercased()) < SafeUnwrap.shared.safeUnwrapOfString(string: $1.name?.lowercased()) } // sort alphabetically
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
@@ -41,8 +41,8 @@ class ServerListViewController: UIViewController {
     }
     
     private func getServersList() {
-        let tesoDataRequest = TesoRequest()
-        tesoDataRequest.getServersList(withToken: token) { result in
+        let request = NetworkRequest()
+        request.getServersList(withToken: token, url: UrlKeeper.serverListUrl) { result in
             switch result {
             case .failure(let error):
                 print(error)

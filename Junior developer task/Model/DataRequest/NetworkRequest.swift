@@ -1,5 +1,5 @@
 //
-//  TesoRequest.swift
+//  NetworkRequest.swift
 //  Junior developer task
 //
 //  Created by Daniel Šuškevič on 2020-08-09.
@@ -10,15 +10,19 @@ import Foundation
 
 enum RequestError: Error {
     case noDataAvailable
+    case noUrlAvailable
     case cannotProcessData
 }
 
-class TesoRequest {
+class NetworkRequest {
     
-    func getToken(username: String, password: String, completion: @escaping (Result<String, RequestError>) -> ()) {
+    func getToken(url: URL?, username: String, password: String, completion: @escaping (Result<String, RequestError>) -> ()) {
         
-        let url = URL(string: "https://playground.tesonet.lt/v1/tokens")
-        var request = URLRequest(url: url!)
+        guard let url = url else {
+            completion(.failure(.noUrlAvailable))
+            return
+        }
+        var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
@@ -44,9 +48,12 @@ class TesoRequest {
         }
     }
     
-    func getServersList(withToken: String, completion: @escaping (Result<[ServerList], RequestError>) -> ()) {
+    func getServersList(withToken: String, url: URL?, completion: @escaping (Result<[ServerList], RequestError>) -> ()) {
         
-        guard let url = URL(string: "https://playground.tesonet.lt/v1/servers") else {return}
+         guard let url = url else {
+            completion(.failure(.noUrlAvailable))
+            return
+        }
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.addValue("Bearer \(withToken)", forHTTPHeaderField: "Authorization")
