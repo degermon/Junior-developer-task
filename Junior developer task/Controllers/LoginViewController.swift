@@ -14,6 +14,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     
+    var networkRequest: NetworkingProtocol!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setConstraints()
@@ -50,13 +52,11 @@ class LoginViewController: UIViewController {
         view.endEditing(true)
     }
     
-    private func logIn() {
-        let request = NetworkRequest()
-        
+    private func logIn() {        
         let username = SafeUnwrap.shared.safeUnwrapOfString(string: usernameTextField.text)
         let password = SafeUnwrap.shared.safeUnwrapOfString(string: passwordTextField.text)
         
-        request.getToken(url: UrlKeeper.tokenUrl, username: username, password: password) { result in
+        networkRequest.getToken(url: UrlKeeper.tokenUrl, username: username, password: password) { result in
             switch result {
             case .failure(let error):
                 print(error)
@@ -72,7 +72,7 @@ class LoginViewController: UIViewController {
     // MARK: - Alerts
     
     private func displayLoginAlert() {
-        let alert = UIAlertController(title: "Error", message: "Please check your login info and try again", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Error", message: "Check login credentials and try again", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         self.present(alert, animated: true)
     }

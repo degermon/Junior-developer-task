@@ -14,7 +14,7 @@ enum RequestError: Error {
     case cannotProcessData
 }
 
-class NetworkRequest {
+class NetworkRequest: NetworkingProtocol {
     
     func getToken(url: URL?, username: String, password: String, completion: @escaping (Result<String, RequestError>) -> ()) {
         

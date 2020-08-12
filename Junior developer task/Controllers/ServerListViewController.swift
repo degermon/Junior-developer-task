@@ -11,6 +11,8 @@ import UIKit
 class ServerListViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    
+    var networkRequest: NetworkingProtocol!
     var token: String = ""
     var serverList: [ServerList] = [] {
         didSet {
@@ -41,8 +43,7 @@ class ServerListViewController: UIViewController {
     }
     
     private func getServersList() {
-        let request = NetworkRequest()
-        request.getServersList(withToken: token, url: UrlKeeper.serverListUrl) { result in
+        networkRequest.getServersList(withToken: token, url: UrlKeeper.serverListUrl) { result in
             switch result {
             case .failure(let error):
                 print(error)

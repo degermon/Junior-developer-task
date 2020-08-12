@@ -7,5 +7,7 @@ target 'Junior developer task' do
 
   # Pods for Junior developer task
 	pod 'SnapKit'
+	pod 'Swinject'
+	pod 'SwinjectStoryboard'
 
 end
