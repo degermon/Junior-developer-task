@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import PromiseKit
 
 enum RequestError: Error {
     case noDataAvailable
@@ -18,7 +19,37 @@ class NetworkRequest: NetworkingProtocol {
     
     private var receivedToken = ""
     
-    func logIn(url: URL?, username: String, password: String, completion: @escaping (Result<String, RequestError>) -> ()) {
+    func promiseLogin(url: URL?, username: String, password: String) -> Promise<String> {
+        return Promise { r in
+            logIn(url: url, username: username, password: password) { (result) in
+                switch result {
+                case .success(_):
+                    r.fulfill("Token request successful")
+                case .failure(let error):
+                    r.reject(error)
+                }
+            }
+        }
+    }
+    
+    func promiseGetServerList(withToken: String, url: URL?) -> Promise<String> {
+        return Promise { r in
+            getServersList(withToken: withToken, url: url) { (result) in
+                switch result {
+                case .success(let serverList):
+                    r.fulfill(serverList)
+                case .failure(let error):
+                    r.reject(error)
+                }
+            }
+        }
+    }
+    
+    func getToken() -> String {
+        return receivedToken
+    }
+    
+    private func logIn(url: URL?, username: String, password: String, completion: @escaping (Swift.Result<String, RequestError>) -> ()) {
         
         guard let url = url else {
             completion(.failure(.noUrlAvailable))
@@ -51,16 +82,13 @@ class NetworkRequest: NetworkingProtocol {
         }
     }
     
-    func getToken() -> String {
-        return receivedToken
-    }
-    
-    func getServersList(withToken: String, url: URL?, completion: @escaping (Result<[ServerList], RequestError>) -> ()) {
+    private func getServersList(withToken: String, url: URL?, completion: @escaping (Swift.Result<String, RequestError>) -> ()) {
         
          guard let url = url else {
             completion(.failure(.noUrlAvailable))
             return
         }
+        
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.addValue("Bearer \(withToken)", forHTTPHeaderField: "Authorization")
@@ -70,18 +98,12 @@ class NetworkRequest: NetworkingProtocol {
             case .failure(let error):
                 completion(.failure(error))
             case .success(let data):
-                do {
-                    let decoder = JSONDecoder()
-                    let list = try decoder.decode([ServerList].self, from: data)
-                    completion(.success(list))
-                } catch {
-                    completion(.failure(.cannotProcessData))
-                }
+                completion(.success(String(data: data, encoding: .utf8) ?? ""))
             }
         }
     }
     
-    private func getDataFor(request: URLRequest, completion: @escaping (Result<Data, RequestError>) -> ()) {
+    private func getDataFor(request: URLRequest, completion: @escaping (Swift.Result<Data, RequestError>) -> ()) {
         let task = URLSession.shared.dataTask(with: request) { (data, _ , _) in
                  guard let data = data else {
                      completion(.failure(.noDataAvailable))

@@ -1,25 +1,41 @@
 PODS:
+  - AyLoading (4.0.1)
+  - PromiseKit (6.13.1):
+    - PromiseKit/CorePromise (= 6.13.1)
+    - PromiseKit/Foundation (= 6.13.1)
+    - PromiseKit/UIKit (= 6.13.1)
+  - PromiseKit/CorePromise (6.13.1)
+  - PromiseKit/Foundation (6.13.1):
+    - PromiseKit/CorePromise
+  - PromiseKit/UIKit (6.13.1):
+    - PromiseKit/CorePromise
   - SnapKit (5.0.1)
   - Swinject (2.7.1)
   - SwinjectStoryboard (2.2.0):
     - Swinject (~> 2.6)
 
 DEPENDENCIES:
+  - AyLoading
+  - PromiseKit
   - SnapKit
   - Swinject
   - SwinjectStoryboard
 
 SPEC REPOS:
   trunk:
+    - AyLoading
+    - PromiseKit
     - SnapKit
     - Swinject
     - SwinjectStoryboard
 
 SPEC CHECKSUMS:
+  AyLoading: 17a525212c42aef3ca4061e67faad8d5ebd7de59
+  PromiseKit: 28fda91c973cc377875d8c0ea4f973013c05b6db
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   Swinject: ddf78b8486dd9b71a667b852cad919ab4484478e
   SwinjectStoryboard: 32512ef16c2b0ff5b8f823b23539c4a50f6d3383
 
-PODFILE CHECKSUM: 6385231bc68046af1d1371492cbec59d540b76a4
+PODFILE CHECKSUM: d18f72bba82c9c44c4aa1205218e1fbf785bcfa0
 
 COCOAPODS: 1.9.3

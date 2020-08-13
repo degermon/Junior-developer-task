@@ -9,5 +9,7 @@ target 'Junior developer task' do
 	pod 'SnapKit'
 	pod 'Swinject'
 	pod 'SwinjectStoryboard'
+	pod 'AyLoading'
+	pod 'PromiseKit'
 
 end

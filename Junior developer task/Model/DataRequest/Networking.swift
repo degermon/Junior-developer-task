@@ -7,9 +7,10 @@
 //
 
 import Foundation
+import PromiseKit
 
 protocol NetworkingProtocol {
-    func logIn(url: URL?, username: String, password: String, completion: @escaping (Result<String, RequestError>) -> ())
+    func promiseLogin(url: URL?, username: String, password: String) -> Promise<String>
     func getToken() -> String
-    func getServersList(withToken: String, url: URL?, completion: @escaping (Result<[ServerList], RequestError>) -> ())
+    func promiseGetServerList(withToken: String, url: URL?) -> Promise<String>
 }

@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import PromiseKit
+import AyLoading
 
 class LoginViewController: UIViewController {
 
@@ -52,20 +54,23 @@ class LoginViewController: UIViewController {
         view.endEditing(true)
     }
     
+    private func clearTextFields() {
+        usernameTextField.text?.removeAll()
+        passwordTextField.text?.removeAll()
+    }
+    
     private func logIn() {        
         let username = SafeUnwrap.shared.safeUnwrapOfString(string: usernameTextField.text)
         let password = SafeUnwrap.shared.safeUnwrapOfString(string: passwordTextField.text)
         
-        networkRequest.logIn(url: UrlKeeper.tokenUrl, username: username, password: password) { result in
-            switch result {
-            case .failure(let error):
-                print(error)
-                DispatchQueue.main.async {
-                    self.displayLoginAlert()
-                }
-            case .success(_):
-                self.navigateToServerListVC()
-            }
+        networkRequest.promiseLogin(url: UrlKeeper.tokenUrl, username: username, password: password).done { (_) in
+            self.clearTextFields()
+            self.navigateToServerListVC()
+        }.ensure {
+            self.loginButton.ay.stopLoading()
+        }.catch { (error) in
+            print(error)
+            self.displayLoginAlert()
         }
     }
     
@@ -92,5 +97,6 @@ class LoginViewController: UIViewController {
     @IBAction func loginButtonTapped(_ sender: Any) {
         handleTap()
         logIn()
+        loginButton.ay.startLoading()
     }
 }

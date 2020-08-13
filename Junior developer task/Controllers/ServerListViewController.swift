@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import PromiseKit
+import AyLoading
 
 class ServerListViewController: UIViewController {
 
@@ -42,20 +44,29 @@ class ServerListViewController: UIViewController {
     }
     
     private func getServersList() {
-        networkRequest.getServersList(withToken: networkRequest.getToken(), url: UrlKeeper.serverListUrl) { result in
-            switch result {
-            case .failure(let error):
-                print(error)
-                self.noDataAlert()
-            case .success(let list):
-                self.serverList = list
-            }
+        networkRequest.promiseGetServerList(withToken: networkRequest.getToken(), url: UrlKeeper.serverListUrl).done { (serverListString) in
+            self.parseServerList(dataString: serverListString)
+        }.catch { (error) in
+            print(error)
+            self.displayNoDataAlert()
+        }
+    }
+    
+    private func parseServerList(dataString: String) {
+        let jsonData = dataString.data(using: .utf8)!
+        let decoder = JSONDecoder()
+        do {
+            let list = try decoder.decode([ServerList].self, from: jsonData)
+            serverList = list
+        } catch {
+            print("error")
+            displayNoDataAlert()
         }
     }
     
     // MARK: - Alerts
     
-    func noDataAlert() {
+    private func displayNoDataAlert() {
         let alert = UIAlertController(title: "Error", message: "No data available", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Retry", style: .default, handler: { (_) in
             self.getServersList()
