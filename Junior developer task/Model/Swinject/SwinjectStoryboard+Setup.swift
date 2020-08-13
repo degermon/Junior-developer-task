@@ -16,6 +16,6 @@ extension SwinjectStoryboard {
         defaultContainer.storyboardInitCompleted(ServerListViewController.self) { r, c in
             c.networkRequest = r.resolve(NetworkingProtocol.self)
         }
-        defaultContainer.register(NetworkingProtocol.self) { _ in NetworkRequest() }
+        defaultContainer.register(NetworkingProtocol.self) { _ in NetworkRequest() }.inObjectScope(.container)
     }
 }

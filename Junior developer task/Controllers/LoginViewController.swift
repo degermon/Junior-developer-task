@@ -56,15 +56,15 @@ class LoginViewController: UIViewController {
         let username = SafeUnwrap.shared.safeUnwrapOfString(string: usernameTextField.text)
         let password = SafeUnwrap.shared.safeUnwrapOfString(string: passwordTextField.text)
         
-        networkRequest.getToken(url: UrlKeeper.tokenUrl, username: username, password: password) { result in
+        networkRequest.logIn(url: UrlKeeper.tokenUrl, username: username, password: password) { result in
             switch result {
             case .failure(let error):
                 print(error)
                 DispatchQueue.main.async {
                     self.displayLoginAlert()
                 }
-            case .success(let token):
-                self.navigateToServerListVC(withToken: token)
+            case .success(_):
+                self.navigateToServerListVC()
             }
         }
     }
@@ -79,10 +79,9 @@ class LoginViewController: UIViewController {
     
     // MARK: - Navigation
     
-    private func navigateToServerListVC(withToken: String) {
+    private func navigateToServerListVC() {
         DispatchQueue.main.async {
             if let destinationVC = self.storyboard?.instantiateViewController(withIdentifier: "ShowServerList") as? ServerListViewController {
-                destinationVC.token = withToken
                 self.navigationController?.pushViewController(destinationVC, animated: true)
             }
         }

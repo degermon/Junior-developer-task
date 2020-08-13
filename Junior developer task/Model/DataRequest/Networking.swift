@@ -9,6 +9,7 @@
 import Foundation
 
 protocol NetworkingProtocol {
-     func getToken(url: URL?, username: String, password: String, completion: @escaping (Result<String, RequestError>) -> ())
-     func getServersList(withToken: String, url: URL?, completion: @escaping (Result<[ServerList], RequestError>) -> ())
+    func logIn(url: URL?, username: String, password: String, completion: @escaping (Result<String, RequestError>) -> ())
+    func getToken() -> String
+    func getServersList(withToken: String, url: URL?, completion: @escaping (Result<[ServerList], RequestError>) -> ())
 }

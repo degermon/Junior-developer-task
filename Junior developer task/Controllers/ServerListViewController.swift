@@ -13,7 +13,6 @@ class ServerListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var networkRequest: NetworkingProtocol!
-    var token: String = ""
     var serverList: [ServerList] = [] {
         didSet {
             serverList = serverList.sorted { SafeUnwrap.shared.safeUnwrapOfString(string: $0.name?.lowercased()) < SafeUnwrap.shared.safeUnwrapOfString(string: $1.name?.lowercased()) } // sort alphabetically
@@ -43,13 +42,25 @@ class ServerListViewController: UIViewController {
     }
     
     private func getServersList() {
-        networkRequest.getServersList(withToken: token, url: UrlKeeper.serverListUrl) { result in
+        networkRequest.getServersList(withToken: networkRequest.getToken(), url: UrlKeeper.serverListUrl) { result in
             switch result {
             case .failure(let error):
                 print(error)
+                self.noDataAlert()
             case .success(let list):
                 self.serverList = list
             }
         }
+    }
+    
+    // MARK: - Alerts
+    
+    func noDataAlert() {
+        let alert = UIAlertController(title: "Error", message: "No data available", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Retry", style: .default, handler: { (_) in
+            self.getServersList()
+        }))
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
     }
 }

@@ -16,7 +16,9 @@ enum RequestError: Error {
 
 class NetworkRequest: NetworkingProtocol {
     
-    func getToken(url: URL?, username: String, password: String, completion: @escaping (Result<String, RequestError>) -> ()) {
+    private var receivedToken = ""
+    
+    func logIn(url: URL?, username: String, password: String, completion: @escaping (Result<String, RequestError>) -> ()) {
         
         guard let url = url else {
             completion(.failure(.noUrlAvailable))
@@ -42,10 +44,15 @@ class NetworkRequest: NetworkingProtocol {
                         completion(.failure(.cannotProcessData))
                         return
                     }
-                    completion(.success(token))
+                    self.receivedToken = String(token)
+                    completion(.success(""))
                 }
             }
         }
+    }
+    
+    func getToken() -> String {
+        return receivedToken
     }
     
     func getServersList(withToken: String, url: URL?, completion: @escaping (Result<[ServerList], RequestError>) -> ()) {
