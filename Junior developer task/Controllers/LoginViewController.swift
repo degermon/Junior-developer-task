@@ -85,10 +85,8 @@ class LoginViewController: UIViewController {
     // MARK: - Navigation
     
     private func navigateToServerListVC() {
-        DispatchQueue.main.async {
-            if let destinationVC = self.storyboard?.instantiateViewController(withIdentifier: "ShowServerList") as? ServerListViewController {
-                self.navigationController?.pushViewController(destinationVC, animated: true)
-            }
+        if let destinationVC = self.storyboard?.instantiateViewController(withIdentifier: "ShowServerList") as? ServerListViewController {
+            self.navigationController?.pushViewController(destinationVC, animated: true)
         }
     }
     

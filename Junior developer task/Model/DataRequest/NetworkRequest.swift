@@ -55,6 +55,7 @@ class NetworkRequest: NetworkingProtocol {
             completion(.failure(.noUrlAvailable))
             return
         }
+        
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
